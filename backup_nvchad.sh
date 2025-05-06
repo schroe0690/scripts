@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NVCHAD_DIR="$HOME/.config/nvim"
-GITHUB_URL="https://github.com/schroe0690/nvim_settings.git"
+GITHUB_URL="https://github.com/schroe0690/nvchad_settings.git"
 
 cd "$NVCHAD_DIR"
 
