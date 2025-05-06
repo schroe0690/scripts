@@ -18,4 +18,9 @@ git clone "$GITHUB_URL" "$TMP_DIR"
 # クローンした内容を適用
 mv "$TMP_DIR" "$NVCHAD_DIR"
 
+# キャッシュのクリア
+rm -rf "$HOME/.local/share/nvim"
+rm -rf "$HOME/.cache/nvim"
+
 echo "GitHubからnvchad設定を適用しました。"
+echo "nvimを再起動してください。"
