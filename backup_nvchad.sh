@@ -18,11 +18,7 @@ fi
 # 変更をステージング
 git add .
 
-# 変更があればコミット
-if ! git diff --cached --quiet; then
-  git commit -m "Update nvchad config $(date '+%Y-%m-%d %H:%M:%S')"
-  git push -u origin main
-  echo "nvchadの設定をGitHubにバックアップしました。"
-else
-  echo "変更はありません。"
-fi
+# コミット
+git commit -m "Update nvchad config $(date '+%Y-%m-%d %H:%M:%S')"
+git push -u origin main
+echo "nvchadの設定をGitHubにバックアップしました。"
