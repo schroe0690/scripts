@@ -35,6 +35,7 @@ else
 fi
 
 echo 'export PATH="$PATH:$HOME/.config/emacs/bin"' >> "$SHELL_RC"
+source "$SHELL_RC"
 
 echo "==== Doom Emacs の自動インストールが完了しました！===="
 echo "新しいシェルを開くか 'source $SHELL_RC' を実行してください。"
