@@ -8,8 +8,8 @@ echo "==== Doom Emacs & 必要パッケージ自動インストールスクリ�
 apt update -y
 
 # 2. Postfixの事前設定（必要な場合のみ。不要ならこのブロックを削除してください）
-echo "postfix postfix/main_mailer_type select Internet Site" | sudo debconf-set-selections
-echo "postfix postfix/mailname string example.com" | sudo debconf-set-selections
+echo "postfix postfix/main_mailer_type select Internet Site" | debconf-set-selections
+echo "postfix postfix/mailname string example.com" | debconf-set-selections
 
 # 3. 必要なパッケージのインストール（Postfix含む）
 DEBIAN_FRONTEND=noninteractive apt install -y git emacs postfix
