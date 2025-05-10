@@ -19,7 +19,7 @@ fi
 git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
 
 # 5. Doom Emacsのインストール（全て自動進行）
-"$HOME/.config/emacs/bin/doom" install -y
+yes | "$HOME/.config/emacs/bin/doom" install
 
 # 6. パスの設定
 echo 'export PATH="$PATH:$HOME/.config/emacs/bin"' >> "$HOME/.bashrc"
