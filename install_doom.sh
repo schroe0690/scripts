@@ -2,24 +2,30 @@
 
 set -e
 
-echo "==== Doom Emacs 自動インストールスクリプト ===="
+echo "==== Doom Emacs & 必要パッケージ自動インストールスクリプト ===="
 
-# 1. 必要なパッケージのインストール（自動でyes）
+# 1. 必要なパッケージのインストール準備
 apt update -y
-apt install -y git emacs
 
-# 2. 既存のDoom Emacsディレクトリがあれば自動バックアップ
+# 2. Postfixの事前設定（必要な場合のみ。不要ならこのブロックを削除してください）
+echo "postfix postfix/main_mailer_type select Internet Site" | sudo debconf-set-selections
+echo "postfix postfix/mailname string example.com" | sudo debconf-set-selections
+
+# 3. 必要なパッケージのインストール（Postfix含む）
+DEBIAN_FRONTEND=noninteractive apt install -y git emacs postfix
+
+# 4. 既存のDoom Emacsディレクトリがあれば自動バックアップ
 if [ -d "$HOME/.config/emacs" ]; then
     mv "$HOME/.config/emacs" "$HOME/.config/emacs.bak.$(date +%s)"
 fi
 
-# 3. Doom Emacsをクローン
+# 5. Doom Emacsをクローン
 git clone --depth 1 https://github.com/doomemacs/doomemacs "$HOME/.config/emacs"
 
-# 4. Doom Emacsのインストール（全て自動進行）
+# 6. Doom Emacsのインストール（全て自動進行）
 yes | "$HOME/.config/emacs/bin/doom" install
 
-# 5. パスの設定（重複チェックなしで追記）
+# 7. パスの設定（重複チェックなしで追記）
 if [ -n "$ZSH_VERSION" ]; then
     SHELL_RC="$HOME/.zshrc"
 elif [ -n "$BASH_VERSION" ]; then
