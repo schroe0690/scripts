@@ -7,8 +7,8 @@ set -e
 echo "=== Emacs & Spacemacs 自動インストール開始 ==="
 
 # 1. Emacs本体を自動インストール
-sudo apt update -y
-sudo apt install -y emacs emacs-gtk git
+apt update -y
+apt install -y emacs emacs-gtk git
 
 # 2. 既存の設定を自動バックアップ
 timestamp=$(date +%Y%m%d%H%M%S)
