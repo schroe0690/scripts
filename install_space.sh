@@ -1,21 +1,26 @@
 #!/bin/bash
 
-# EmacsとSpacemacsのインストールスクリプト（Ubuntu系Linux向け）
+# Emacs & Spacemacs 自動インストールスクリプト（完全自動・質問なし）
 
 set -e
 
-# 1. Emacs本体をインストール
-echo "Emacsをインストールします..."
-apt update
-apt -y install emacs emacs-gtk
+echo "=== Emacs & Spacemacs 自動インストール開始 ==="
 
-# 2. 既存の設定をバックアップ
-echo "既存のEmacs設定をバックアップします..."
-[ -d "$HOME/.emacs.d" ] && mv "$HOME/.emacs.d" "$HOME/.emacs.d.bak.$(date +%Y%m%d%H%M%S)"
-[ -f "$HOME/.emacs" ] && mv "$HOME/.emacs" "$HOME/.emacs.bak.$(date +%Y%m%d%H%M%S)"
+# 1. Emacs本体を自動インストール
+sudo apt update -y
+sudo apt install -y emacs emacs-gtk git
 
-# 3. Spacemacsをクローン
-echo "Spacemacsをクローンします..."
+# 2. 既存の設定を自動バックアップ
+timestamp=$(date +%Y%m%d%H%M%S)
+[ -d "$HOME/.emacs.d" ] && mv -f "$HOME/.emacs.d" "$HOME/.emacs.d.bak.$timestamp"
+[ -f "$HOME/.emacs" ] && mv -f "$HOME/.emacs" "$HOME/.emacs.bak.$timestamp"
+
+# 3. Spacemacsをクローン（developブランチを使いたい場合はコメントアウトを外す）
 git clone https://github.com/syl20bnr/spacemacs "$HOME/.emacs.d"
+# git -C "$HOME/.emacs.d" checkout develop
 
-echo "インストール完了！Emacsを起動して初期設定を進めてください。"
+# 4. .spacemacsファイルの自動生成（Emacs初回起動時の質問をスキップしたい場合）
+#   - 既定の.spacemacsテンプレートをコピー
+cp "$HOME/.emacs.d/core/templates/.spacemacs.template" "$HOME/.spacemacs"
+
+echo "=== インストール完了！Emacsを起動してください。 ==="
