@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NVCHAD_DIR="$HOME/.config/doom"
+DOOM_DIR="$HOME/.config/doom"
 GITHUB_URL="https://github.com/schroe0690/doom_settings.git"
 
-cd "$NVCHAD_DIR"
+cd "$DOOM_DIR"
 
 # .gitディレクトリがなければ初期化
 if [ ! -d ".git" ]; then
