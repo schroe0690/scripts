@@ -18,8 +18,8 @@ if [ -d emacs ]; then
     rm -rf emacs
 fi
 
-# 4. gitから安定版（emacs-29ブランチ）をクローン
-git clone --branch emacs-29 --depth 1 https://git.savannah.gnu.org/git/emacs.git
+# 4. gitからemacsリポジトリクローン
+git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git
 cd emacs
 
 # 5. ビルド準備
