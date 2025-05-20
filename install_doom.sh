@@ -6,7 +6,7 @@ set -e
 apt update
 apt install -y git build-essential gcc make cmake ncurses-dev libjansson-dev libgccjit-10-dev \
     libgtk-3-dev libgnutls28-dev libxml2-dev libxpm-dev libjpeg-dev libpng-dev libgif-dev \
-    libtiff-dev libxaw7-dev texinfo libvterm-dev
+    libtiff-dev libxaw7-dev texinfo libvterm-dev autoconf
 
 # 2. 作業ディレクトリ作成
 WORKDIR="$HOME/emacs-build"
