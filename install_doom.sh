@@ -57,4 +57,4 @@ echo 'export PATH=$PATH:$HOME/.config/emacs/bin/' >> ~/.bashrc
 echo "Emacsのビルドとdoom-emacsの導入が完了しました。"
 echo "doom-emacsの設定のため、以下のコマンドを入力してください"
 echo "source ~/.bashrc"
-echo "doom install"
+echo "doom sync"
