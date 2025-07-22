@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # 設定
-SCR_DIR=$(pwd)
+SCRIPT_DIR=$(pwd)
 GITHUB_REPO="schroe0690/scripts.git"
 GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
 
 # ディレクトリ移動
-cd "$SCR_DIR"
+cd "$SCRIPT_DIR"
 
 # リモートリポジトリを設定
 if [ ! -d ".git" ]; then

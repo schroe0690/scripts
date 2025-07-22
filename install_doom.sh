@@ -48,6 +48,8 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 echo 'export PATH=$PATH:$HOME/.config/emacs/bin/' >> ~/.bashrc
 
 # 11. doom-emacsの設定をクローン
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
 ./apply_doom.sh
 
 # 12. doom-emacsのインストール
