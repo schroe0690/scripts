@@ -54,11 +54,11 @@ cd "$SCRIPT_DIR"
 ./apply_doom.sh
 
 # 12. doom-emacsのインストール
-source ~/.bashrc
-doom sync
+# source ~/.bashrc
+# doom sync
 
 echo "Emacsのビルドとdoom-emacsの導入が完了しました。"
 echo "doom-emacsを起動するには以下のコマンドを実行してください"
 # echo "doom-emacsの設定のため、以下のコマンドを入力してください"
 echo "source ~/.bashrc"
-# echo "doom sync"
+echo "doom sync"
