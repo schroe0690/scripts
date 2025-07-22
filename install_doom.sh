@@ -19,7 +19,6 @@ if [ -d emacs ]; then
 fi
 
 # 4. gitからemacsリポジトリクローン
-# git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git
 git clone --depth 1 https://github.com/emacs-mirror/emacs.git
 cd emacs
 
@@ -32,7 +31,7 @@ make -j"$(nproc)"
 make install
 
 # 7. バージョン確認
-echo "Emacsのバージョン:"
+echo "Emacs Versions: "
 emacs --version
 
 # 8. 既存の~/.emacs.dをバックアップ
@@ -42,19 +41,17 @@ fi
 
 # 9. doom-emacsをクローン
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-# git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 
 
 # 10. doom-emacsのパスを通す
 # bash以外のシェルにも対応できるようにしたい
 echo 'export PATH=$PATH:$HOME/.config/emacs/bin/' >> ~/.bashrc
-# echo 'export PATH=$PATH:$HOME/.emacs.d/bin/' >> ~/.bashrc
-# source ~/.bashrc
+source ~/.bashrc
 
 # 11. doom-emacsのインストール
 # doom install
 
 echo "Emacsのビルドとdoom-emacsの導入が完了しました。"
 echo "doom-emacsの設定のため、以下のコマンドを入力してください"
-echo "source ~/.bashrc"
+# echo "source ~/.bashrc"
 echo "doom sync"

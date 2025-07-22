@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # 設定
-DOOM_DIR="$HOME/.config/doom"
-GITHUB_REPO="schroe0690/doom_settings.git"
+SCR_DIR=$(pwd)
+GITHUB_REPO="schroe0690/scripts.git"
 GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
 
 # ディレクトリ移動
-cd "$DOOM_DIR"
+cd "$SCR_DIR"
 
 # リモートリポジトリを設定
 if [ ! -d ".git" ]; then
@@ -19,6 +19,6 @@ fi
 
 # ステージ・コミット・プッシュ
 git add .
-git commit -m "Update doom config $(date '+%Y-%m-%d %H:%M:%S')"
+git commit -m "Update scripts $(date '+%Y-%m-%d %H:%M:%S')"
 git push -u origin main
-echo "doomの設定をGitHubにバックアップしました。"
+echo "スクリプトにバックアップしました。"
