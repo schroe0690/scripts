@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# 設定
 set -e
+WORKDIR="$HOME/emacs-build"
+SCRIPT_DIR=$(pwd)
 
 # 1. 必要なパッケージをインストール
 apt update
@@ -9,7 +12,6 @@ apt install -y git build-essential gcc make cmake ncurses-dev libjansson-dev lib
     libtiff-dev libxaw7-dev texinfo libvterm-dev autoconf
 
 # 2. 作業ディレクトリ作成
-WORKDIR="$HOME/emacs-build"
 mkdir -p "$WORKDIR"
 cd "$WORKDIR"
 
@@ -48,7 +50,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
 echo 'export PATH=$PATH:$HOME/.config/emacs/bin/' >> ~/.bashrc
 
 # 11. doom-emacsの設定をクローン
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 ./apply_doom.sh
 
