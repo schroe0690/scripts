@@ -11,7 +11,7 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 # Neovimのビルドに必要な依存関係をインストール (Ubuntu/Debian系の場合)
 # 必要に応じてお使いのディストリビューションに合わせて変更してください
 apt-get update
-apt-get install -y ninja-build gettext cmake unzip curl build-essential
+apt-get install -y ninja-build gettext cmake unzip curl build-essential npm
 
 # 作業ディレクトリを作成 (存在しない場合)
 mkdir -p "$HOME/dev"
