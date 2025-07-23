@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+SCRIPT_DIR=$(pwd)
 
 # 環境変数の設定 (このスクリプト内でのみ有効)
 # 永続的な設定は .bashrc や .zshrc などに記述してください
@@ -52,6 +53,10 @@ fi
 # NvChadのインストール
 echo "NvChadをインストールします: $NVIM_CONFIG_DIR"
 git clone https://github.com/NvChad/starter "$NVIM_CONFIG_DIR" --depth 1
+
+# nvchadの設定をクローン
+cd "$SCRIPT_DIR"
+./apply_nvchad.sh
 
 # プラグインの同期
 echo "Neovimを起動してプラグインを同期します..."
