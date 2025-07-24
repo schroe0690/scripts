@@ -2,22 +2,18 @@
 set -e
 SCRIPT_DIR=$(pwd)
 
-# 環境変数の設定 (このスクリプト内でのみ有効)
-# 永続的な設定は .bashrc や .zshrc などに記述してください
+# 環境変数の設定
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
-# Neovimのビルドに必要な依存関係をインストール (Ubuntu/Debian系の場合)
-# 必要に応じてお使いのディストリビューションに合わせて変更してください
+# 依存関係のインストール
 apt-get update
 apt-get install -y ninja-build gettext cmake unzip curl build-essential npm
 
-# 作業ディレクトリを作成 (存在しない場合)
+# Neovimのビルド・インストール
 mkdir -p "$HOME/dev"
 cd "$HOME/dev"
-
-# Neovimの最新安定版をソースからビルド・インストール
 if [ -d "neovim" ]; then
   echo "既存のneovimディレクトリを削除します。"
   rm -rf neovim
@@ -28,10 +24,9 @@ git checkout stable
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 make install
 cd ..
-rm -rf neovim # ビルド後、ソースディレクトリは不要なため削除
+rm -rf neovim
 
-### 以下, nvchadの設定
-# 既存のNeovim設定をバックアップまたは削除 (必要に応じて変更)
+# Neovim設定のバックアップ
 NVIM_CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
 NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
 NVIM_CACHE_DIR="$XDG_CACHE_HOME/nvim"
@@ -49,21 +44,20 @@ if [ -d "$NVIM_CACHE_DIR" ]; then
   rm -rf "$NVIM_CACHE_DIR"
 fi
 
+# Astronvimのインストール
+echo "Astronvimをインストールします: $NVIM_CONFIG_DIR"
+git clone https://github.com/AstroNvim/AstroNvim "$NVIM_CONFIG_DIR" --depth 1
 
-# NvChadのインストール
-echo "NvChadをインストールします: $NVIM_CONFIG_DIR"
-git clone https://github.com/NvChad/starter "$NVIM_CONFIG_DIR" --depth 1
-
-# nvchadの設定をクローン
+# 独自設定を適用したい場合
 cd "$SCRIPT_DIR"
-if [ -f ./apply_nvchad.sh ]; then
-  ./apply_nvchad.sh
+if [ -f ./apply_astronvim.sh ]; then
+  ./apply_astronvim.sh
 fi
 
 # プラグインの同期
 echo "Neovimを起動してプラグインを同期します..."
-nvim --headless +"Lazy sync" +qa
+nvim --headless "+AstroUpdate" +qa
 
-echo "nvim と NvChad のインストールが完了しました。"
+echo "nvim と Astronvim のインストールが完了しました。"
 echo "ターミナルを再起動するか、source ~/.bashrc (またはお使いのシェルの設定ファイル) を実行して環境変数を読み込んでください。"
 echo "その後、nvim を起動してください。"
