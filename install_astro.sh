@@ -46,7 +46,7 @@ fi
 
 # Astronvimのインストール
 echo "Astronvimをインストールします: $NVIM_CONFIG_DIR"
-git clone https://github.com/AstroNvim/AstroNvim "$NVIM_CONFIG_DIR" --depth 1
+git clone https://github.com/AstroNvim/template "$NVIM_CONFIG_DIR" --depth 1
 
 # 独自設定を適用したい場合
 cd "$SCRIPT_DIR"
