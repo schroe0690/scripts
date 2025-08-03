@@ -50,8 +50,8 @@ git clone https://github.com/AstroNvim/template "$NVIM_CONFIG_DIR" --depth 1
 
 # 独自設定を適用したい場合
 cd "$SCRIPT_DIR"
-if [ -f ./apply_astronvim.sh ]; then
-  ./apply_astronvim.sh
+if [ -f ./apply_astro.sh ]; then
+  ./apply_astro.sh
 fi
 
 # プラグインの同期

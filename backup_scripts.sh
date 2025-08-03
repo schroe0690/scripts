@@ -22,3 +22,4 @@ git add .
 git commit -m "Update scripts $(date '+%Y-%m-%d %H:%M:%S')"
 git push -u origin main
 echo "スクリプトにバックアップしました。"
+
