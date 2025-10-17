@@ -3,7 +3,17 @@
 # 定数
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GITHUB_REPO="schroe0690/scripts.git"
-GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
+
+# 認証方法を決定
+if [ -n "$GITHUB_USER" ] && [ -n "$GITHUB_TOKEN" ]; then
+  # 環境変数が設定されている場合はHTTPS with token
+  GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
+  echo "環境変数を使用してHTTPS認証を行います"
+else
+  # 環境変数が未設定の場合はシンプルなHTTPS（git credential helperに依存）
+  GITHUB_URL="https://github.com/${GITHUB_REPO}"
+  echo "Git credential helperを使用してHTTPS認証を行います"
+fi
 
 # ディレクトリ移動
 cd "$SCRIPT_DIR"
