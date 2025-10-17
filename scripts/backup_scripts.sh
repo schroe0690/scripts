@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 設定
-SCRIPT_DIR=$(pwd)
+# 定数
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GITHUB_REPO="schroe0690/scripts.git"
 GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
 
@@ -21,5 +21,4 @@ fi
 git add .
 git commit -m "Update scripts $(date '+%Y-%m-%d %H:%M:%S')"
 git push -u origin main
-echo "スクリプトにバックアップしました。"
-
+echo "スクリプトをバックアップしました。"
