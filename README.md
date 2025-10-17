@@ -12,5 +12,3 @@ export GITHUB_TOKEN="your_personal_access_token"
 ```bash
 bash backup_scripts.sh
 ```
-
-

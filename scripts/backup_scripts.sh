@@ -3,7 +3,13 @@
 # 定数
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GITHUB_REPO="schroe0690/scripts.git"
-GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
+
+# 認証方法を選択（SSH優先、HTTPSはフォールバック）
+if [ -n "$GITHUB_USER" ] && [ -n "$GITHUB_TOKEN" ]; then
+  GITHUB_URL="https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPO}"
+else
+  GITHUB_URL="git@github.com:${GITHUB_REPO}"
+fi
 
 # ディレクトリ移動
 cd "$SCRIPT_DIR"
