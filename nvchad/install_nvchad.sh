@@ -3,17 +3,15 @@ set -e
 SCRIPT_DIR=$(pwd)
 
 # 環境変数の設定 (このスクリプト内でのみ有効)
-# 永続的な設定は .bashrc や .zshrc などに記述してください
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
-# Neovimのビルドに必要な依存関係をインストール (Ubuntu/Debian系の場合)
-# 必要に応じてお使いのディストリビューションに合わせて変更してください
+# 依存関係のインストール
 apt-get update
 apt-get install -y ninja-build gettext cmake unzip curl build-essential npm
 
-# 作業ディレクトリを作成 (存在しない場合)
+# 作業ディレクトリを作成(存在しない場合)
 mkdir -p "$HOME/dev"
 cd "$HOME/dev"
 
@@ -30,7 +28,6 @@ make install
 cd ..
 rm -rf neovim # ビルド後、ソースディレクトリは不要なため削除
 
-### 以下, nvchadの設定
 # 既存のNeovim設定をバックアップまたは削除 (必要に応じて変更)
 NVIM_CONFIG_DIR="$XDG_CONFIG_HOME/nvim"
 NVIM_DATA_DIR="$XDG_DATA_HOME/nvim"
@@ -49,12 +46,11 @@ if [ -d "$NVIM_CACHE_DIR" ]; then
   rm -rf "$NVIM_CACHE_DIR"
 fi
 
-
 # NvChadのインストール
 echo "NvChadをインストールします: $NVIM_CONFIG_DIR"
 git clone https://github.com/NvChad/starter "$NVIM_CONFIG_DIR" --depth 1
 
-# nvchadの設定をクローン
+# 個人用設定の適用
 cd "$SCRIPT_DIR"
 if [ -f ./apply_nvchad.sh ]; then
   ./apply_nvchad.sh

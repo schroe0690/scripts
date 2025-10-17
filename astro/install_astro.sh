@@ -11,9 +11,11 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 apt-get update
 apt-get install -y ninja-build gettext cmake unzip curl build-essential npm
 
-# Neovimのビルド・インストール
+# 作業ディレクトリの作成(存在しない場合)
 mkdir -p "$HOME/dev"
 cd "$HOME/dev"
+
+# Neovimのビルド・インストール
 if [ -d "neovim" ]; then
   echo "既存のneovimディレクトリを削除します。"
   rm -rf neovim
@@ -48,7 +50,7 @@ fi
 echo "Astronvimをインストールします: $NVIM_CONFIG_DIR"
 git clone https://github.com/AstroNvim/template "$NVIM_CONFIG_DIR" --depth 1
 
-# 独自設定を適用したい場合
+# 個人用設定の適用
 cd "$SCRIPT_DIR"
 if [ -f ./apply_astro.sh ]; then
   ./apply_astro.sh
